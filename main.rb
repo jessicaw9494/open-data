@@ -1133,7 +1133,7 @@ homebase_locations_data= JSON.parse(%q|
 # puts homebase_locations_data["data"]
 
 
-puts "What is your neighborhood?"
+puts "WWhat borough do you want to live in?"
 code_num = gets.chomp
 homebase_locations_data["data"].each do ||
 end
