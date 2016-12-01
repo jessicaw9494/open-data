@@ -1133,7 +1133,28 @@ homebase_locations_data= JSON.parse(%q|
 # puts homebase_locations_data["data"]
 
 
-puts "WWhat borough do you want to live in?"
-code_num = gets.chomp
-homebase_locations_data["data"].each do ||
+def homebase_locations_info(information,boroughs)
+information["data"].each do |info|
+  # puts info[8]
+  if info[11] == boroughs
+    return{
+      borough: info[9],
+      address: info[10],
+      phone_number: info[12],
+      homebase_office: info[13]
+    }
+    break
+  end
 end
+end
+def run(information)
+  puts "What borough do you want to live in?"
+  user_code_num = gets.chomp
+  user_code_num = user_code_num.capitalize
+  user_borough = homebase_locations_info(information,user_code_num)
+  puts user_borough[:borough]
+  puts "Here is  the phone number:#{user_borough[:address]}"
+  puts "Here is the district: #{user_borough[:phone_number]}"
+  puts "Here is the office name:#{user_borough[:homebase_office]}"
+end
+  run(homebase_locations_data)
