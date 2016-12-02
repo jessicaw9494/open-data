@@ -1133,28 +1133,30 @@ homebase_locations_data= JSON.parse(%q|
 # puts homebase_locations_data["data"]
 
 
-def homebase_locations_info(information,boroughs)
-information["data"].each do |info|
-  # puts info[8]
-  if info[11] == boroughs
-    return{
+def homebase_locations_info(information,boroughs) #name of the function
+information["data"].each do |info| #["data"] is the hash that contains all the locations / will go through each data
+  # puts info[8] which is the neighborhood
+  if info[11] == boroughs #[11] refers to the brough inside "data" / will check if that brough is the same as the borough the user put
+    return{  #returns the information to the computer
+       #each array[] is which line of code that data is located in
       borough: info[9],
       address: info[10],
       phone_number: info[12],
       homebase_office: info[13]
     }
-    break
+    break #stops the code from looping
   end
 end
 end
-def run(information)
-  puts "What borough do you want to live in?"
-  user_code_num = gets.chomp
-  user_code_num = user_code_num.capitalize
-  user_borough = homebase_locations_info(information,user_code_num)
-  puts user_borough[:borough]
-  puts "Here is  the phone number:#{user_borough[:address]}"
+
+def run(information) #name of the function
+  puts "What borough do you want to live in?" #shows the question tot the user
+  user_code_num = gets.chomp #gets the user's answer
+  user_code_num = user_code_num.capitalize #capitalizes the first letter of the user's answer
+  user_borough = homebase_locations_info(information,user_code_num) 
+  puts user_borough[:borough] #puts out the information to the user 
+  puts "Here is  the phone number:#{user_borough[:address]}" #the [:word] refers back to the information in the first def
   puts "Here is the district: #{user_borough[:phone_number]}"
   puts "Here is the office name:#{user_borough[:homebase_office]}"
 end
-  run(homebase_locations_data)
+  run(homebase_locations_data) #runs the code
